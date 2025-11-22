@@ -1,0 +1,30 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*.so
+.Python
+*.egg-info/
+.env
+# chroma_db/ - commented out to include vector DB in deployment
+
+# Node
+node_modules/
+.next/
+out/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+# backend/chroma_db/ - commented out to include vector DB in deployment
+backend/*.db
