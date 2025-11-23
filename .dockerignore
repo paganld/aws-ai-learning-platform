@@ -8,11 +8,15 @@ __pycache__/
 venv/
 env/
 ENV/
+*.pyc
 
-# Node
+# Node - EXCLUDE EVERYTHING
 node_modules/
 .next/
 npm-debug.log*
+.npm-cache/
+.npm/
+package-lock.json
 
 # IDE
 .vscode/
@@ -30,9 +34,14 @@ Thumbs.db
 
 # Documentation (not needed in Docker image)
 *.md
+README*
+QUICKSTART*
+DEPLOY*
+START*
+PRODUCTION*
 docs/
 
-# Frontend (not needed for backend)
+# Frontend (COMPLETELY EXCLUDE - not needed for backend)
 frontend/
 
 # Deployment files
