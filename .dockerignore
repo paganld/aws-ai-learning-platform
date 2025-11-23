@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+venv/
+env/
+ENV/
+
+# Node
+node_modules/
+.next/
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation (not needed in Docker image)
+*.md
+docs/
+
+# Frontend (not needed for backend)
+frontend/
+
+# Deployment files
+deploy.sh
+render.yaml
+railway.json
+Procfile
+*.toml
