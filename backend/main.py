@@ -74,9 +74,9 @@ def initialize_rag():
     if not api_key:
         raise ValueError("GOOGLE_API_KEY not found")
 
-    # Configure Gemini
+    # Configure Gemini - using Flash for higher free tier quota
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-pro')
+    model = genai.GenerativeModel('gemini-1.5-flash')
 
     # Initialize HuggingFace embeddings (local, no API limits)
     print("🔧 Loading local embedding model...")
@@ -269,7 +269,7 @@ async def get_stats():
             "total_documents": count,
             "status": "healthy" if count > 0 else "needs_documents",
             "embedding_model": "all-MiniLM-L6-v2",
-            "llm_model": "gemini-pro"
+            "llm_model": "gemini-1.5-flash"
         }
     except Exception as e:
         return {"error": str(e)}
