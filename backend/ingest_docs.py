@@ -644,8 +644,12 @@ if __name__ == "__main__":
 
     # Check if user wants to scrape real docs or use sample data
     use_sample = True
-    if len(sys.argv) > 1 and sys.argv[1] == "--scrape":
-        use_sample = False
-        print("⚠️  Live scraping mode - this will take longer")
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "--scrape":
+            use_sample = False
+            print("⚠️  Live scraping mode - this will take longer")
+        elif sys.argv[1] == "--quick-start":
+            use_sample = True
+            print("🚀 Quick start mode - using sample data")
 
     ingest_documents(use_sample_data=use_sample)

@@ -19,10 +19,22 @@ load_dotenv()
 
 app = FastAPI(title="AWS AI Learning Platform API")
 
-# CORS middleware
+# CORS middleware - Updated for production
+# Allow frontend URLs from environment or use defaults
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # Local development
+    "http://localhost:3001",
+    FRONTEND_URL,  # Production frontend
+]
+
+# Add Railway preview URLs if available
+if os.getenv("RAILWAY_STATIC_URL"):
+    ALLOWED_ORIGINS.append(f"https://{os.getenv('RAILWAY_STATIC_URL')}")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -84,9 +96,16 @@ def initialize_rag():
             embedding_function=embeddings,
             collection_name="aws_docs"
         )
-        print(f"✅ Loaded vector store with {vector_store._collection.count()} documents")
+        doc_count = vector_store._collection.count()
+        print(f"✅ Loaded vector store with {doc_count} documents")
+
+        # If no documents found, warn but don't crash
+        if doc_count == 0:
+            print("⚠️  WARNING: Vector store is empty! Run ingest_docs.py to add documents.")
+            print("   The API will start but won't be able to answer questions accurately.")
     except Exception as e:
         print(f"⚠️  Error loading vector store: {e}")
+        print("   Creating empty vector store. Run ingest_docs.py to add documents.")
         vector_store = None
 
     print("✅ RAG system initialized successfully")
