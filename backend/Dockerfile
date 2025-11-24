@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
-COPY requirements.txt .
+COPY backend/requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir --user -r requirements.txt
@@ -31,9 +31,9 @@ COPY --from=builder /root/.cache /root/.cache
 ENV PATH=/root/.local/bin:$PATH
 
 # Copy application code
-COPY main.py .
-COPY ingest_docs.py .
-COPY startup.sh .
+COPY backend/main.py .
+COPY backend/ingest_docs.py .
+COPY backend/startup.sh .
 
 # Create directory for ChromaDB
 RUN mkdir -p chroma_db
