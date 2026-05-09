@@ -43,7 +43,7 @@ No CLI needed! Deploy using web interfaces only.
 ### Step 4: Configure Environment Variables
 1. In Railway project, click "Variables"
 2. Add these variables:
-   - **GOOGLE_API_KEY**: `AIzaSyA0BBT2dQbELCja-pWPIxzTDaSPMuZKtKE`
+   - **GOOGLE_API_KEY**: `YOUR_GOOGLE_API_KEY_HERE`
    - **CHROMA_PERSIST_DIRECTORY**: `./chroma_db`
    - **TEMPERATURE**: `0.7`
    - **MAX_TOKENS**: `2048`
